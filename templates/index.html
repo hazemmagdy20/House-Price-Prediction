@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #4A90E2;
+            outline: none;
+            box-shadow: 0 0 6px rgba(74,144,226,0.4);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #357ABD;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🏡 House Price Prediction</h2>
+        <form action="/predict" method="post">
+            <label>Bedrooms:</label>
+            <input type="number" step="1" name="bedroom" required>
+
+            <label>Space (sq ft):</label>
+            <input type="number" step="0.01" name="space" required>
+
+            <label>Rooms:</label>
+            <input type="number" step="1" name="room" required>
+
+            <label>Lot Size:</label>
+            <input type="number" step="0.01" name="lot" required>
+
+            <label>Tax Amount:</label>
+            <input type="number" step="0.01" name="tax" required>
+
+            <label>Bathrooms:</label>
+            <input type="number" step="0.5" name="bathroom" required>
+
+            <label>Garage:</label>
+            <input type="number" step="0.5" name="garage" required>
+
+            <label>Condition (0 = No, 1 = Yes):</label>
+            <input type="number" step="1" min="0" max="1" name="condition" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
